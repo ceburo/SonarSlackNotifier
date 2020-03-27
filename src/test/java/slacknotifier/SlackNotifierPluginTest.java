@@ -1,12 +1,12 @@
 package slacknotifier;
 
-import static com.koant.sonar.slacknotifier.common.SlackNotifierProp.*;
+import static com.betomorrow.sonar.slacknotifier.common.SlackNotifierProp.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import com.koant.sonar.slacknotifier.SlackNotifierPlugin;
-import com.koant.sonar.slacknotifier.extension.task.SlackPostProjectAnalysisTask;
+import com.betomorrow.sonar.slacknotifier.SlackNotifierPlugin;
+import com.betomorrow.sonar.slacknotifier.extension.task.SlackPostProjectAnalysisTask;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;

@@ -1,12 +1,12 @@
-package com.koant.sonar.slacknotifier.extension.task;
+package com.betomorrow.sonar.slacknotifier.extension.task;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.betomorrow.sonar.slacknotifier.common.component.ProjectConfig;
+import com.betomorrow.sonar.slacknotifier.common.component.ProjectConfigBuilder;
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Field;
 import com.github.seratch.jslack.api.webhook.Payload;
-import com.koant.sonar.slacknotifier.common.component.ProjectConfig;
-import com.koant.sonar.slacknotifier.common.component.ProjectConfigBuilder;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -56,7 +56,7 @@ public class ProjectAnalysisPayloadBuilderTest {
 
     @Test
     public void testI18nBundle() {
-        assertThat(i18n.message(Locale.ENGLISH, "metric.new_sqale_debt_ratio.short_name", null)).isEqualTo("Debt Ratio on new code");
+        assertThat(i18n.message(Locale.FRENCH, "metric.new_sqale_debt_ratio.short_name", null)).isEqualTo("Debt Ratio on new code");
     }
 
     @Test

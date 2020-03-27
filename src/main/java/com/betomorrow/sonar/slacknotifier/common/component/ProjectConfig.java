@@ -1,10 +1,6 @@
-package com.koant.sonar.slacknotifier.common.component;
-
-import com.koant.sonar.slacknotifier.common.SlackNotifierProp;
-import org.sonar.api.config.Configuration;
+package com.betomorrow.sonar.slacknotifier.common.component;
 
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * Created by ak on 17/10/16.

@@ -1,4 +1,4 @@
-package com.koant.sonar.slacknotifier.extension.task;
+package com.betomorrow.sonar.slacknotifier.extension.task;
 
 import org.junit.Before;
 import org.junit.Test;

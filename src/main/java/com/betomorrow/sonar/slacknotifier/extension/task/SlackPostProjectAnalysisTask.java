@@ -1,8 +1,8 @@
-package com.koant.sonar.slacknotifier.extension.task;
+package com.betomorrow.sonar.slacknotifier.extension.task;
 
 import com.github.seratch.jslack.api.webhook.Payload;
-import com.koant.sonar.slacknotifier.common.component.AbstractSlackNotifyingComponent;
-import com.koant.sonar.slacknotifier.common.component.ProjectConfig;
+import com.betomorrow.sonar.slacknotifier.common.component.AbstractSlackNotifyingComponent;
+import com.betomorrow.sonar.slacknotifier.common.component.ProjectConfig;
 import org.assertj.core.util.VisibleForTesting;
 import org.sonar.api.ce.posttask.PostProjectAnalysisTask;
 import org.sonar.api.config.Configuration;

@@ -1,43 +1,43 @@
-package com.koant.sonar.slacknotifier.common;
+package com.betomorrow.sonar.slacknotifier.common;
 
-import com.koant.sonar.slacknotifier.SlackNotifierPlugin;
+import com.betomorrow.sonar.slacknotifier.SlackNotifierPlugin;
 
 public enum SlackNotifierProp {
 
     /**
      * The Slack Incoming Web Hook URL
      */
-    HOOK("ckss.hook"),
+    HOOK("beto.hook"),
 
     /**
      * Appear in Slack channels as this user
      */
-    USER("ckss.user"),
+    USER("beto.user"),
 
     /**
      * Appear in Slack channels with this icon
      */
-    ICON_URL("ckss.icon"),
+    ICON_URL("beto.icon"),
     /**
      * Is this plugin enabled in general?
      * Per project slack notification sending depends on this and a project specific slack channel configuration existing.
      */
-    ENABLED("ckss.enabled"),
+    ENABLED("beto.enabled"),
     
     /**
      * Proxy settings (IP, port, protocol)
      */
-    PROXY_IP("ckss.proxy_ip"),
-    PROXY_PORT("ckss.proxy_port"),
-    PROXY_PROTOCOL("ckss.proxy_protocol"),
+    PROXY_IP("beto.proxy_ip"),
+    PROXY_PORT("beto.proxy_port"),
+    PROXY_PROTOCOL("beto.proxy_protocol"),
     /**
      * Appear in Slack channels as this user
      */
-    DEFAULT_CHANNEL("ckss.channel"),
+    DEFAULT_CHANNEL("beto.channel"),
     /**
      * Include branch name in slack message (only supported in licenced versions of SonarQube)
      */
-    INCLUDE_BRANCH("ckss.include_branch"),
+    INCLUDE_BRANCH("beto.include_branch"),
 
     /**
      * <p>
@@ -46,18 +46,18 @@ public enum SlackNotifierProp {
      * This is a standard SonarQube way of configuring multivalued fields with org.sonar.api.config.PropertyDefinition.Builder#fields
      * </p>
      * <pre>
-     *     ckss.projectchannels=com.koant.sonar.slack:sonar-slack-notifier-plugin,some:otherproject
+     *     beto.projectchannels=com.koant.sonar.slack:sonar-slack-notifier-plugin,some:otherproject
      *
-     *     ckss.projectchannels.com.koant.sonar.slack:sonar-slack-notifier-plugin.project=com.koant.sonar.slack:sonar-slack-notifier-plugin
-     *     ckss.projectchannels.com.koant.sonar.slack:sonar-slack-notifier-plugin.channel=#random
+     *     beto.projectchannels.com.koant.sonar.slack:sonar-slack-notifier-plugin.project=com.koant.sonar.slack:sonar-slack-notifier-plugin
+     *     beto.projectchannels.com.koant.sonar.slack:sonar-slack-notifier-plugin.channel=#random
      *
-     *     ckss.projectchannels.some:otherproject.project=some:otherproject
-     *     ckss.projectchannels.some:otherproject.channel=#general
+     *     beto.projectchannels.some:otherproject.project=some:otherproject
+     *     beto.projectchannels.some:otherproject.channel=#general
      * </pre>
      *
      * @see SlackNotifierPlugin#define(org.sonar.api.Plugin.Context)
      */
-    CONFIG("ckss.projectconfig"),
+    CONFIG("beto.projectconfig"),
 
     /**
      * @see SlackNotifierProp#CONFIG

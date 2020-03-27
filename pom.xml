@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.koant.sonar.slack</groupId>
-  <artifactId>cks-slack-notifier</artifactId>
-  <version>2.4</version>
+  <groupId>com.betomorrow.sonar.slack</groupId>
+  <artifactId>slack-notifier</artifactId>
+  <version>1.0</version>
   <packaging>sonar-plugin</packaging>
 
-  <name>CKS Slack Notifier Plugin</name>
+  <name>Slack Notifier Plugin</name>
   <description>Sends notifications to Slack.</description>
 
   <properties>
@@ -20,14 +20,6 @@
     <argLine />
     <sonar.version>7.2</sonar.version>
   </properties>
-
-  <scm>
-    <connection>scm:git:git@github.com:sleroy/sonar-slack-notifier-plugin.git</connection>
-    <url>scm:git:git@github.com:sleroy/sonar-slack-notifier-plugin.git</url>
-    <developerConnection>scm:git:git@github.com:sleroy/sonar-slack-notifier-plugin.git</developerConnection>
-    <tag>cks-slack-notifier-2.4</tag>
-  </scm>
-  
 
   <dependencies>
     <!-- Dependencies provided by SonarQube server -->
@@ -146,16 +138,16 @@
         <version>1.17</version>
         <extensions>true</extensions>
         <configuration>
-          <jarName>cks-slack-notifier-${project.version}</jarName>
-          <pluginKey>cks-slack-notifier</pluginKey>
-          <pluginClass>com.koant.sonar.slacknotifier.SlackNotifierPlugin</pluginClass>
-          <pluginName>CKS Slack Notifier</pluginName>
+          <jarName>slack-notifier-${project.version}</jarName>
+          <pluginKey>slack-notifier</pluginKey>
+          <pluginClass>com.betomorrow.sonar.slacknotifier.SlackNotifierPlugin</pluginClass>
+          <pluginName>Slack Notifier</pluginName>
           <pluginDescription>Sends notifications to Slack</pluginDescription>
           <sonarQubeMinVersion>6.5</sonarQubeMinVersion>
-          <pluginUrl>https://github.com/sleroy/sonar-slack-notifier-plugin</pluginUrl>
-          <pluginIssueTrackerUrl>https://github.com/sleroy/sonar-slack-notifier-plugin/issues</pluginIssueTrackerUrl>
-          <pluginSourcesUrl>https://github.com/sleroy/sonar-slack-notifier-plugin</pluginSourcesUrl>
-          <pluginOrganizationName>Antti Koivisto</pluginOrganizationName>
+          <pluginUrl/>
+          <pluginIssueTrackerUrl/>
+          <pluginSourcesUrl/>
+          <pluginOrganizationName>BeTomorrow</pluginOrganizationName>
           <pluginOrganizationUrl>https://github.com/kogitant</pluginOrganizationUrl>
         </configuration>
       </plugin>

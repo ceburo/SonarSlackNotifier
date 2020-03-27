@@ -3,7 +3,7 @@
 This project is a fork of the original work from https://github.com/kogitant/sonar-slack-notifier-plugin.
 I made modifications to keep it working for the latest versions of SonarQube (7.2, 7.3) 
 
-# CKS Sonar Slack Notifier Plugin
+# Sonar Slack Notifier Plugin
 SonarQube plugin for sending notifications to Slack
 
 This plugin sends a Slack message of project analysis outcome to congired project specific slack channel.
@@ -11,10 +11,6 @@ The plugin uses Incoming Web Hook as the integration mechanism with Slack.
 
 # Install
 The plugin must be placed in *SONAR_HOME/extensions/plugins* directory and SonarQube must be restarted.
-
-## Using latest release
-You can find the latest release from https://github.com/sleroy/sonar-slack-notifier-plugin/releases/ page.
-Download the 
 
 ## From sources
 To build the plugin simply run
@@ -33,7 +29,7 @@ As administrator, go to the general settings and configure the Sonar instance UR
 A new category Slack appears in the left menu:
 ![](documentation/screenshots/administration_slack_category.png?raw=true)
 
-Under it you can find the CKS Slack Notifier plugin configurations:
+Under it you can find the Slack Notifier plugin configurations:
 ![](documentation/screenshots/administration_cks_slack_notifier_settings.png?raw=true)
 
 In the above example there is a Project Key to Slack Channel configuration for an example project.
@@ -42,10 +38,10 @@ The project key of any SonarQube project can be found in the project page (botto
 ![](documentation/screenshots/project_key_from_project_page.png?raw=true)
 
 ## Wildcard support
-The project key supports wildcards at the end. See https://github.com/sleroy/sonar-slack-notifier-plugin/issues/2
+The project key supports wildcards at the end. 
 
 ## Only send notification when Quality Gate fails
-Notifications can be sent for all Quality Gate statuses, or just for WARNING/ERROR statuses. See https://github.com/kogitant/sonar-slack-notifier-plugin/issues/1 
+Notifications can be sent for all Quality Gate statuses, or just for WARNING/ERROR statuses. 
  
 # Example messages posted to Slack
 ## New bug introduced

@@ -1,6 +1,6 @@
-package com.koant.sonar.slacknotifier.common.component;
+package com.betomorrow.sonar.slacknotifier.common.component;
 
-import com.koant.sonar.slacknotifier.common.SlackNotifierProp;
+import com.betomorrow.sonar.slacknotifier.common.SlackNotifierProp;
 import org.sonar.api.config.Configuration;
 
 public class ProjectConfigBuilder {
@@ -66,7 +66,7 @@ public class ProjectConfigBuilder {
             settings.get(configurationPrefix + SlackNotifierProp.CHANNEL.property()).orElseThrow(() -> new IllegalStateException("No slack channel configured, unable to continue") );
         notify = settings.get(configurationPrefix + SlackNotifierProp.NOTIFY.property()).orElse("");
         qgFailOnly = settings.getBoolean(
-            configurationPrefix + SlackNotifierProp.QG_FAIL_ONLY.property()).orElse(true);
+            configurationPrefix + SlackNotifierProp.QG_FAIL_ONLY.property()).orElse(false);
         return this;
     }
 

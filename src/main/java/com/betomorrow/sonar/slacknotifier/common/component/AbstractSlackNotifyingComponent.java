@@ -1,6 +1,6 @@
-package com.koant.sonar.slacknotifier.common.component;
+package com.betomorrow.sonar.slacknotifier.common.component;
 
-import com.koant.sonar.slacknotifier.common.SlackNotifierProp;
+import com.betomorrow.sonar.slacknotifier.common.SlackNotifierProp;
 import org.sonar.api.ce.posttask.QualityGate;
 import org.sonar.api.config.Configuration;
 import org.sonar.api.utils.MessageException;
@@ -187,8 +187,8 @@ public abstract class AbstractSlackNotifyingComponent {
             LOG.info("Slack channel for project [{}] is blank, notifications disabled", projectConfig.getProjectKey());
             return true;
         }
-        if (projectConfig.isQgFailOnly() && qualityGate != null && QualityGate.Status.OK.equals(
-            qualityGate.getStatus())) {
+        if ((projectConfig.isQgFailOnly() && QualityGate.Status.OK.equals(
+            qualityGate.getStatus()) && qualityGate != null)) {
             LOG.info("Project [{}] set up to send notification on failed Quality Gate, but was: {}",
                      projectConfig.getProjectKey(), qualityGate.getStatus().name());
             return true;

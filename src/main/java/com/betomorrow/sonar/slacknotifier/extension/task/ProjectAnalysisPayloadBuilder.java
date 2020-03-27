@@ -1,10 +1,10 @@
-package com.koant.sonar.slacknotifier.extension.task;
+package com.betomorrow.sonar.slacknotifier.extension.task;
 
 import com.github.seratch.jslack.api.model.Attachment;
 import com.github.seratch.jslack.api.model.Field;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.Payload.PayloadBuilder;
-import com.koant.sonar.slacknotifier.common.component.ProjectConfig;
+import com.betomorrow.sonar.slacknotifier.common.component.ProjectConfig;
 import org.sonar.api.ce.posttask.Branch;
 import org.sonar.api.ce.posttask.PostProjectAnalysisTask;
 import org.sonar.api.ce.posttask.QualityGate;
@@ -18,7 +18,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.lang.String.format;
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 /**
  * Created by ak on 18/10/16.
@@ -97,20 +96,17 @@ class ProjectAnalysisPayloadBuilder {
         assertNotNull(i18n, "i18n");
         assertNotNull(analysis, "analysis");
 
-        String notifyPrefix = isNotBlank(projectConfig.getNotify()) ? format("<!%s> ", projectConfig.getNotify()) : "";
-
         QualityGate qualityGate = analysis.getQualityGate();
         StringBuilder shortText = new StringBuilder();
-        shortText.append(notifyPrefix);
-        shortText.append(format("Project [%s] analyzed", analysis.getProject().getName()));
+        shortText.append(format("Projet [%s] analysé", analysis.getProject().getName()));
 
         Optional<Branch> branch = analysis.getBranch();
         if (branch.isPresent() && !branch.get().isMain() && this.includeBranch) {
-            shortText.append(format(" for branch [%s]", branch.get().getName().orElse("")));
+            shortText.append(format(" sur la branche [%s]", branch.get().getName().orElse("")));
         }
         shortText.append(". ");
-        shortText.append(format("See %s", projectUrl));
-        shortText.append(qualityGate == null ? "." : format(". Quality gate status: %s", qualityGate.getStatus()));
+        shortText.append(format("Voir %s", projectUrl));
+        shortText.append(qualityGate == null ? "." : format(". Status de l'analyse : %s", qualityGate.getStatus()));
 
         PayloadBuilder builder = Payload.builder()
             .channel(projectConfig.getSlackChannel())
@@ -135,16 +131,27 @@ class ProjectAnalysisPayloadBuilder {
 
         List<Attachment> attachments = new ArrayList<>();
 
-        attachments.add(Attachment.builder()
-            .fields(
-                qualityGate.getConditions()
-                    .stream()
-                    .filter(condition -> !qgFailOnly || notOkNorNoValue(condition))
-                    .map(this::translate)
-                    .collect(Collectors.toList()))
-            .color(statusToColor.get(qualityGate.getStatus()))
-            .build());
+        if (QualityGate.Status.OK == qualityGate.getStatus()) {
+            attachments.add(Attachment.builder()
+                .fields(createOKAttachement())
+                .color(statusToColor.get(qualityGate.getStatus()))
+                .build());
+        } else {
+            attachments.add(Attachment.builder()
+                .fields(
+                    qualityGate.getConditions()
+                        .stream()
+                        .filter(condition -> AddToAttachement(condition))
+                        .map(this::translate)
+                        .collect(Collectors.toList()))
+                .color(statusToColor.get(qualityGate.getStatus()))
+                .build());
+        }
         return attachments;
+    }
+
+    private boolean AddToAttachement(QualityGate.Condition condition) {
+        return notOkNorNoValue(condition);
     }
 
     private boolean notOkNorNoValue(QualityGate.Condition condition) {
@@ -160,7 +167,7 @@ class ProjectAnalysisPayloadBuilder {
      */
     private Field translate(QualityGate.Condition condition) {
         String i18nKey = "metric." + condition.getMetricKey() + ".name";
-        String conditionName = i18n.message(Locale.ENGLISH, i18nKey, condition.getMetricKey());
+        String conditionName = i18n.message(Locale.FRENCH, i18nKey, condition.getMetricKey());
 
         if (QualityGate.EvaluationStatus.NO_VALUE.equals(condition.getStatus())) {
             // No value for given metric
@@ -173,18 +180,18 @@ class ProjectAnalysisPayloadBuilder {
             appendValue(condition, sb);
             appendValuePostfix(condition, sb);
             if (condition.getWarningThreshold() != null) {
-                sb.append(", warning if ");
+                sb.append(", alerte si ");
                 appendValueOperatorPrefix(condition, sb);
                 sb.append(condition.getWarningThreshold());
                 appendValuePostfix(condition, sb);
             }
             if (condition.getErrorThreshold() != null) {
-                sb.append(", error if ");
+                sb.append(", erreur si ");
                 appendValueOperatorPrefix(condition, sb);
                 sb.append(condition.getErrorThreshold());
                 appendValuePostfix(condition, sb);
             }
-            return Field.builder().title(conditionName + ": " + condition.getStatus().name())
+            return Field.builder().title(conditionName + " : " + condition.getStatus().name())
                 .value(sb.toString())
                 .valueShortEnough(false)
                 .build();
@@ -248,6 +255,15 @@ class ProjectAnalysisPayloadBuilder {
             LOG.error("Failed to parse [{}] into a Double due to [{}]", s, e.getMessage());
             sb.append(s);
         }
+    }
+
+    private List<Field> createOKAttachement() {
+        List<Field> okStatus = new ArrayList<>();
+
+        Field OKField = Field.builder().title("Status OK").build();
+        okStatus.add(OKField);
+
+        return okStatus;
     }
 }
 
